@@ -1,66 +1,9 @@
 <template>
   <div class="wrapper">
     <div class="container container__inner">
-      <aside class="aside">
-        <nav class="nav">
-          <a href="#">
-            <img
-              class="logo"
-              src="@/assets/IMG/Kolesagroup.svg"
-              alt="логотип"
-            />
-          </a>
-          <ul class="nav__menu">
-            <li class="nav__list">
-              <a class="nav__link" href="#"> Оргсхема </a>
-            </li>
-            <li class="nav__list">
-              <a class="nav__link" href="#"> Kolesa Team </a>
-            </li>
-            <li class="nav__list">
-              <a class="nav__link active" href="#"> Kolesa Shop </a>
-            </li>
-            <li class="nav__list">
-              <a class="nav__link" href="#"> Новости </a>
-            </li>
-            <li class="nav__list">
-              <a class="nav__link" href="#"> Education </a>
-            </li>
-            <li class="nav__list">
-              <a class="nav__link" href="#"> Guidelines </a>
-            </li>
-            <li class="nav__list">
-              <a class="nav__link" href="#"> Библиотека </a>
-            </li>
-            <li class="nav__list">
-              <a class="nav__link" href="#"> FAQ </a>
-            </li>
-          </ul>
-        </nav>
-      </aside>
+      <asideLeft></asideLeft>
       <section class="main-content main-content__left">
-        <div class="main-content__header">
-          <div class="search">
-            <button class="search__button" type="button">
-              <img src="@/assets/IMG/search-big.svg" alt="" />
-            </button>
-            <input class="search__input" type="text" placeholder="Поиск" />
-          </div>
-          <a class="user">
-            <div class="user__avatar">
-              <img
-                src="@/assets/IMG/avatar.jpg"
-                alt="Аватар ползовательля"
-                width="44"
-                height="44"
-              />
-            </div>
-            <div class="user__info">
-              <span class="user__name">Мортиджан</span>
-              <span class="user__point">300 баллов</span>
-            </div>
-          </a>
-        </div>
+        <mainContentHeader></mainContentHeader>
         <a class="banner" href="#">
           <img src="@/assets/IMG/Баннер.jpg" alt="баннер" />
         </a>
@@ -118,7 +61,7 @@
                 {{ item.name }}
               </p>
               <p class="main-cards__size">{{ item.size }}</p>
-              <button class="main-cards-btn" type="button" @click="openModal">
+              <button class="main-cards-btn" type="button" @click="openCard(item)">
                 Заказать
               </button>
             </div>
@@ -126,194 +69,29 @@
         </div>
       </section>
     </div>
-    <footer class="footer">
-      <div class="container">
-        <div class="footer__inner">
-          <div class="footer__left">
-            <p class="copyright">© Kolesa Group</p>
-            <ul class="socety">
-              <li class="socety__item">
-                <a href="#">
-                  <img src="@/assets/IMG/Instagram.svg" alt="инстагарм" />
-                </a>
-              </li>
-              <li class="socety__item">
-                <a href="#">
-                  <img src="@/assets/IMG/YouTube.svg" alt="ютуб" />
-                </a>
-              </li>
-              <li class="socety__item">
-                <a href="#">
-                  <img src="@/assets/IMG/VK.svg" alt="вконтакте" />
-                </a>
-              </li>
-            </ul>
-          </div>
-          <div class="footer__right">
-            <p class="footer__text">
-              Есть идеи что улучшить? <br />
-              Не знаешь, с кем решить проблему?
-            </p>
-            <button class="footer__btn" type="button">Написать</button>
-          </div>
-        </div>
-      </div>
-    </footer>
-    <div class="modal" v-if="isShowModal">
-      <div class="modal__body">
-        <div class="modal__images">
-          <img
-            src="@/assets/IMG/t-shirt.jpg"
-            alt="Классная футболка! Эволюционируй или сдохни"
-          />
-          <div class="modal__preview">
-            <img
-              src="@/assets/IMG/preview-1.jpg"
-              alt="Классная футболка! Эволюционируй или сдохни"
-              width="50"
-              height="50"
-            />
-            <img
-              class="active"
-              src="@/assets/IMG/preview-2.jpg"
-              alt="Классная футболка! Эволюционируй или сдохни"
-              width="50"
-              height="50"
-            />
-            <img
-              src="@/assets/IMG/preview-3.jpg"
-              alt="Классная футболка! Эволюционируй или сдохни"
-              width="50"
-              height="50"
-            />
-          </div>
-        </div>
-        <div class="modal__description">
-          <h1 class="modal__title">Футболка "Эволюционируй или сдохни"</h1>
-          <form class="modal__form" action="#" method="GET">
-            <div class="modal__sell">
-              <div class="modal__scores">
-                <h6 class="modal__score">100 баллов</h6>
-                <button class="btn-primary" type="submit">Заказать</button>
-              </div>
-              <div class="modal__yourbalance">
-                <p class="modal__yourbalance--balance">Твой баланс:</p>
-                <p class="modal__yourbalance--score">3 945 баллов</p>
-                <img
-                  class="modal__yourbalance--basket"
-                  src="@/assets/IMG/basket.png"
-                  alt="Корзина"
-                />
-              </div>
-            </div>
-            <div class="modal__radio--colors">
-              <h6 class="modal__radio--title">Цвета:</h6>
-              <div class="modal__radio--btns">
-                <input
-                  class="modal__radio"
-                  type="radio"
-                  name="modal__color"
-                  id="modal__color--blue"
-                  value="#00458A"
-                />
-                <label class="modal__color--label" for="modal__color--blue">
-                  <div
-                    class="modal__color--container"
-                    style="background-color: #00458a"
-                  ></div>
-                  <span>Синий</span>
-                </label>
-                <input
-                  class="modal__radio"
-                  type="radio"
-                  name="modal__color"
-                  id="modal__color--beige"
-                  value="#EFE8D8"
-                />
-                <label class="modal__color--label" for="modal__color--beige">
-                  <div
-                    class="modal__color--container"
-                    style="background-color: #efe8d8"
-                  ></div>
-                  <span>Бежевый</span>
-                </label>
-                <input
-                  class="modal__radio"
-                  type="radio"
-                  name="modal__color"
-                  id="modal__color--gray"
-                  value="#D4D4DA"
-                />
-                <label class="modal__color--label" for="modal__color--gray">
-                  <div
-                    class="modal__color--container"
-                    style="background-color: #d4d4da"
-                  ></div>
-                  <span>Серый</span>
-                </label>
-              </div>
-            </div>
-            <div class="modal__radio--size">
-              <h6 class="modal__radio--title">Размер:</h6>
-              <div class="modal__radio--btns">
-                <input
-                  class="modal__radio"
-                  type="radio"
-                  name="modal__size"
-                  id="modal__size--s"
-                  value="s"
-                />
-                <label class="modal__size--label" for="modal__size--s">
-                  <span>S</span>
-                </label>
-                <input
-                  class="modal__radio"
-                  type="radio"
-                  name="modal__size"
-                  id="modal__size--m"
-                  value="m"
-                />
-                <label class="modal__size--label" for="modal__size--m">
-                  <span>M</span>
-                </label>
-                <input
-                  class="modal__radio"
-                  type="radio"
-                  name="modal__size"
-                  id="modal__size--l"
-                  value="l"
-                />
-                <label class="modal__size--label" for="modal__size--l">
-                  <span>L</span>
-                </label>
-              </div>
-            </div>
-            <div class="modal__info">
-              <h6 class="modal__info--title">Детали:</h6>
-              <p class="modal__info--text">
-                Брендированная толстовка от Qazaq Republic. Материал: Хлопок
-                80%, Вискоза 20%
-              </p>
-              <h6 class="modal__info--title">Как выбрать размер:</h6>
-              <p class="modal__info--text">Написать дяде Рику для уточнения.</p>
-            </div>
-            <button class="modal__close" type="button" @click="closeModal">
-              <img src="@/assets/IMG/close.svg" alt="Знак икс" />
-            </button>
-          </form>
-        </div>
-      </div>
-    </div>
-    <div class="overlay" v-if="isShowModal" @click="closeModal"></div>
+    <footerBottom></footerBottom>
+    <modal :data="modalData" :is-open="isShowModal" @close="closeModal"></modal>
   </div>
 </template>
 
 <script>
+import modal from '@/components/modal.vue';
+import footerBottom from '@/components/footer.vue';
+import mainContentHeader from '@/components/mainContentHeader.vue';
+import asideLeft from '@/components/aside.vue';
+
 export default {
   name: 'app',
+  components: {
+    modal,
+    footerBottom,
+    mainContentHeader,
+    asideLeft,
+  },
   data() {
     return {
       isShowModal: false,
+      modalData: {},
       isActive: false,
       activeTabKey: 'all',
       clothes: [
@@ -325,7 +103,7 @@ export default {
           size: 'Размеры S/M/L',
           details:
             'Брендированная футболка от Qazaq Republic. Материал: Хлопок 80%, Вискоза 20%',
-          name: 'Футболка "Эволюционируй или сдохни"',
+          name: 'Футболка "Синий"',
           alt: 'Футболка',
         },
 
@@ -336,8 +114,8 @@ export default {
           price: 220,
           size: 'Размеры S/M/L',
           details:
-            'Брендированная футболка от Qazaq Republic. Материал: Хлопок 80%, Вискоза 20%',
-          name: 'Футболка "Эволюционируй или сдохни"',
+            'Хлопок 80%',
+          name: 'Футболка Эволюция',
           alt: 'Футболка',
         },
 
@@ -348,8 +126,8 @@ export default {
           price: 320,
           size: 'Размеры S/M/L',
           details:
-            'Брендированная футболка от Qazaq Republic. Материал: Хлопок 80%, Вискоза 20%',
-          name: 'Футболка "Эволюционируй или сдохни"',
+            'Вискоза 20%',
+          name: 'Футболка "Салатовый"',
           alt: 'Футболка',
         },
         {
@@ -359,8 +137,8 @@ export default {
           price: 420,
           size: 'Размеры S/M/L',
           details:
-            'Брендированная футболка от Qazaq Republic. Материал: Хлопок 80%, Вискоза 20%',
-          name: 'Футболка "Эволюционируй или сдохни"',
+            'Материал: Хлопок 0%, Вискоза 20%',
+          name: 'Футболка "Серый"',
           alt: 'Футболка',
         },
         {
@@ -371,7 +149,7 @@ export default {
           size: 'Размеры S/M/L',
           details:
             'Брендированная футболка от Qazaq Republic. Материал: Хлопок 80%, Вискоза 20%',
-          name: 'Футболка "Эволюционируй или сдохни"',
+          name: 'Футболка "Черный"',
           alt: 'Футболка',
         },
         {
@@ -381,7 +159,7 @@ export default {
           price: 620,
           size: 'Размеры S/M/L',
           details:
-            'Брендированная футболка от Qazaq Republic. Материал: Хлопок 80%, Вискоза 20%',
+            'Материал: Хлопок 80%, Вискоза 20%',
           name: 'Футболка "Эволюционируй или сдохни"',
           alt: 'Футболка',
         },
@@ -483,6 +261,10 @@ export default {
     },
   },
   methods: {
+    openCard(data) {
+      this.openModal();
+      this.modalData = data;
+    },
     openModal() {
       this.isShowModal = true;
     },
